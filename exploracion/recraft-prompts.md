@@ -86,4 +86,15 @@ La línea con el punto, y de la etiqueta queda únicamente el ojal como rastro. 
 
 ## Resultados de la ronda 2
 
-*Pendiente.* Se corre en Recraft (interfaz) y los archivos se guardan en `ronda-2/`.
+Corrida el 2026-10-21 en Recraft vía MCP, modelo `recraftv4_1_vector` (SVG), 4 créditos por imagen, 16 créditos en total. Los SVG no pudieron bajarse al repo (el proxy de la sesión de Claude bloquea `img.recraft.ai`); están importados en la carpeta de Canva [PrecioReal.mx](https://www.canva.com/folder/FAHYsv4vPYA) y las URLs de Recraft quedan aquí mientras vivan.
+
+| Variante | Canva | Recraft | Resultado |
+| --- | --- | --- | --- |
+| A1, intento 1 | no importado | [url](https://img.recraft.ai/x1UsmfQ3-KYFFTplLhHeDzmXMeJSYEetnOuiMF7ctm4/raw:1/plain/abs://prod/images/a56cc960-b2bd-40ea-80db-42a6cbe257a1) | falló: etiqueta girada, línea partida, el círculo quedó como anillo |
+| A1, intento 2 | `MAHYsq4-OqE` | [url](https://img.recraft.ai/cszo13cbypHPB-p0qoI9LOCJudUYxkz-oQuIHFVxfmY/raw:1/plain/abs://prod/images/fefb4a42-eab0-47d2-a529-8e1a1fd28e6f) | falló: la línea sale de la etiqueta y tiene más de tres segmentos, el círculo es anillo |
+| A2 | `MAHYsvrq9Hs` | [url](https://img.recraft.ai/RV-I43A39PWIXYlBGcsPs9MiKXHOlP4Cr5R4q6qVYGM/raw:1/plain/abs://prod/images/43f5db16-a61a-4e2f-b067-82572002c885) | correcto: etiqueta vertical, barra tachada arriba, línea con punto sólido abajo. Es el que más fielmente ejecuta el concepto |
+| A3 | `MAHYsmgg6gI` | [url](https://img.recraft.ai/EGwOeF2CqqvBUNRoGYfSGzeyZ3VPlCiPlAWDiGrFb5g/raw:1/plain/abs://prod/images/77f7cede-ee4d-4b54-a218-19472138eb12) | correcto: ojal + tres segmentos + punto, cuatro primitivas. Candidato natural a favicon |
+
+Observación de método: Recraft v4.1 vector no respeta instrucciones de conteo ("exactamente tres segmentos") ni de orientación cuando la forma está contenida en otra; A2 y A3 funcionaron porque describen elementos apilados o sueltos, no una figura dentro de otra con geometría precisa. Para la siguiente iteración, esa precisión no se pide a Recraft: se dibuja directo en SVG en `scripts/build.py`, usando A2 y A3 como referencia.
+
+Decisión: *pendiente del desarrollador* entre A2 (símbolo completo) y A3 (favicon), o ambos como sistema (A2 para horizontal, A3 para cuadrado).
